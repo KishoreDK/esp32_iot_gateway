@@ -1,0 +1,39 @@
+@startuml
+title ESP32 IoT Gateway - Block Architecture
+
+package "Sensors" {
+  [Digital Sensors]
+  [Analog Sensors]
+}
+
+package "ESP32 IoT Gateway" {
+  [Sensor Abstraction]
+  [Payload Builder]
+  [MQTT Client]
+  [Actuator Controller]
+}
+
+package "Protocols" {
+  [I2C]
+  [SPI]
+  [CAN]
+  [UART]
+}
+
+package "External Systems" {
+  [MQTT Broker]
+  [Dashboard / Server]
+}
+
+[Digital Sensors] --> [Sensor Abstraction]
+[Analog Sensors] --> [Sensor Abstraction]
+[Sensor Abstraction] --> [Payload Builder]
+[Payload Builder] --> [MQTT Client]
+[MQTT Client] --> [MQTT Broker]
+[MQTT Broker] --> [Dashboard / Server]
+[MQTT Client] --> [Actuator Controller]
+
+[Protocols] ..> [Sensor Abstraction]
+[Protocols] ..> [Actuator Controller]
+
+@enduml

@@ -1,0 +1,57 @@
+menu "ESP32 IoT Gateway Configuration"
+
+    config DEVICE_ID
+        string "Device ID"
+        default "esp32-gateway-01"
+        help
+            Unique ID for this ESP32 device.
+            Used in MQTT payloads and command routing.
+
+    config MQTT_BROKER_URI
+        string "MQTT Broker URI"
+        default "mqtt://test.mosquitto.org"
+        help
+            MQTT broker address.
+            Examples:
+            mqtt://192.168.1.10
+            mqtt://broker.hivemq.com
+
+    config MQTT_PUB_TOPIC
+        string "MQTT Publish Topic"
+        default "iot/esp32/data"
+        help
+            Topic where ESP32 publishes JSON sensor data.
+
+    config MQTT_SUB_TOPIC
+        string "MQTT Subscribe Topic"
+        default "iot/esp32/cmd"
+        help
+            Topic where ESP32 listens for command JSON.
+
+    config PUBLISH_INTERVAL_MS
+        int "Publish interval (milliseconds)"
+        default 1000
+        help
+            Time interval between MQTT publishes.
+
+    menu "Enable Protocols"
+
+        config ENABLE_I2C
+            bool "Enable I2C Bus"
+            default y
+
+        config ENABLE_SPI
+            bool "Enable SPI Bus"
+            default y
+
+        config ENABLE_CAN
+            bool "Enable CAN (TWAI)"
+            default n
+
+        config ENABLE_UART
+            bool "Enable UART"
+            default y
+
+    endmenu
+
+endmenu

@@ -1,0 +1,18 @@
+@startuml
+title ESP32 IoT Gateway - Data Publish Sequence
+
+actor Timer
+participant "app_main" as APP
+participant "Sensors" as SENS
+participant "Payload Builder" as PAY
+participant "MQTT Client" as MQTT
+participant "MQTT Broker" as BROKER
+
+Timer -> APP : Periodic trigger
+APP -> SENS : sensors_read_all()
+SENS --> APP : sensor_data_t
+APP -> PAY : payload_build(data)
+PAY --> APP : JSON string
+APP -> MQTT : mqtt_publish(JSON)
+MQTT -> BROKER : Publish message
+@enduml

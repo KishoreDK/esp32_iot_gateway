@@ -1,0 +1,14 @@
+# ESP-IDF build output
+/build/
+/sdkconfig.old
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python cache
+__pycache__/
+*.pyc

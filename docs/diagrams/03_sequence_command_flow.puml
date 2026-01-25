@@ -1,0 +1,13 @@
+@startuml
+title ESP32 IoT Gateway - Command Flow Sequence
+
+participant "External System" as EXT
+participant "MQTT Broker" as BROKER
+participant "MQTT Client" as MQTT
+participant "Actuator Controller" as ACT
+
+EXT -> BROKER : Publish command JSON
+BROKER -> MQTT : Deliver command
+MQTT -> ACT : actuators_handle_command(JSON)
+ACT -> ACT : Parse & execute
+@enduml
