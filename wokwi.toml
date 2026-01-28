@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+elf = "build/esp32_iot_gateway.elf"
+firmware = "build/esp32_iot_gateway.bin"
+
